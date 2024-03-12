@@ -18,51 +18,109 @@ namespace TicTacToe
         }
 
         string turn = "X";
+        string Winner;
 
-        private char CheckWinner(PictureBox[,] pictureBoxes)
+        private void CheckWin()
         {
-            // Skapa en temporär 3x3 array som representerar det aktuella spelbrädet
-            char[,] board = new char[3, 3];
-
-            // Fyll i arrayen baserat på PictureBox-ernas aktuella bilder
-            for (int i = 0; i < 3; i++)
+            // Kollar om X vinner horizontalt
+            if (pictureBox1.Image == Properties.Resources.X && pictureBox2.Image == Properties.Resources.X && pictureBox3.Image == Properties.Resources.X)
             {
-                for (int j = 0; j < 3; j++)
-                {
-                    if (pictureBoxes[i, j].Image == Properties.Resources.X)
-                        board[i, j] = 'X';
-                    else if (pictureBoxes[i, j].Image == Properties.Resources.O)
-                        board[i, j] = 'O';
-                    else
-                        board[i, j] = ' '; // Inget markerat i denna ruta
-                }
+                Winner = "X";
+            }
+            else if (pictureBox4.Image == Properties.Resources.X && pictureBox5.Image == Properties.Resources.X && pictureBox6.Image == Properties.Resources.X)
+            {
+                Winner = "X";
+            }
+            else if (pictureBox7.Image == Properties.Resources.X && pictureBox8.Image == Properties.Resources.X && pictureBox9.Image == Properties.Resources.X)
+            {
+                Winner = "X";
+            }
+            else
+            {
+                Winner = " ";
             }
 
-            // Kolla horisontellt och vertikalt
-            for (int i = 0; i < 3; i++)
+            // Kollar om O vinner horizontalt
+            if (pictureBox1.Image == Properties.Resources.O && pictureBox2.Image == Properties.Resources.O && pictureBox3.Image == Properties.Resources.O)
             {
-                if (board[i, 0] == board[i, 1] && board[i, 1] == board[i, 2] && board[i, 0] != ' ')
-                {
-                    return board[i, 0]; // Det finns en vinnare horisontellt
-                }
-
-                if (board[0, i] == board[1, i] && board[1, i] == board[2, i] && board[0, i] != ' ')
-                { 
-                    return board[0, i]; // Det finns en vinnare vertikalt
-                }
+                Winner = "O";
+            }
+            else if (pictureBox4.Image == Properties.Resources.O && pictureBox5.Image == Properties.Resources.O && pictureBox6.Image == Properties.Resources.O)
+            {
+                Winner = "O";
+            }
+            else if (pictureBox7.Image == Properties.Resources.O && pictureBox8.Image == Properties.Resources.O && pictureBox9.Image == Properties.Resources.O)
+            {
+                Winner = "O";
+            }
+            else
+            {
+                Winner = " ";
             }
 
-            // Kolla diagonalt
-            if (board[0, 0] == board[1, 1] && board[1, 1] == board[2, 2] && board[0, 0] != ' ')
+            // Kollar om X vinner Vertikalt
+            if (pictureBox1.Image == Properties.Resources.X && pictureBox4.Image == Properties.Resources.X && pictureBox7.Image == Properties.Resources.X)
             {
-                return board[0, 0]; // Det finns en vinnare diagonalt (från vänster upp till höger ner)
+                Winner = "X";
+            }
+            else if (pictureBox2.Image == Properties.Resources.X && pictureBox5.Image == Properties.Resources.X && pictureBox8.Image == Properties.Resources.X)
+            {
+                Winner = "X";
+            }
+            else if (pictureBox3.Image == Properties.Resources.X && pictureBox6.Image == Properties.Resources.X && pictureBox9.Image == Properties.Resources.X)
+            {
+                Winner = "X";
+            }
+            else
+            {
+                Winner = " ";
             }
 
-            if (board[0, 2] == board[1, 1] && board[1, 1] == board[2, 0] && board[0, 2] != ' ')
+            // Kollar om O vinner vertikalt
+            if (pictureBox1.Image == Properties.Resources.O && pictureBox4.Image == Properties.Resources.O && pictureBox7.Image == Properties.Resources.O)
             {
-                return board[0, 2]; // Det finns en vinnare diagonalt (från höger upp till vänster ner)
+                Winner = "O";
             }
-            return ' '; // Ingen vinnare ännu
+            else if (pictureBox2.Image == Properties.Resources.O && pictureBox5.Image == Properties.Resources.O && pictureBox8.Image == Properties.Resources.O)
+            {
+                Winner = "O";
+            }
+            else if (pictureBox3.Image == Properties.Resources.O && pictureBox6.Image == Properties.Resources.O && pictureBox9.Image == Properties.Resources.O)
+            {
+                Winner = "O";
+            }
+            else
+            {
+                Winner = " ";
+            }
+
+            // Kollar om X vinner diagonalt
+            if (pictureBox1.Image == Properties.Resources.X && pictureBox5.Image == Properties.Resources.X && pictureBox9.Image == Properties.Resources.X)
+            {
+                Winner = "X";
+            }
+            else if (pictureBox3.Image == Properties.Resources.X && pictureBox5.Image == Properties.Resources.X && pictureBox7.Image == Properties.Resources.X)
+            {
+                Winner = "X";
+            }
+            else 
+            { 
+                Winner = " "; 
+            }
+
+            // Kollar om O vinner diagonalt
+            if (pictureBox1.Image == Properties.Resources.O && pictureBox5.Image == Properties.Resources.O && pictureBox9.Image == Properties.Resources.O)
+            {
+                Winner = "O";
+            }
+            else if (pictureBox3.Image == Properties.Resources.O && pictureBox5.Image == Properties.Resources.O && pictureBox7.Image == Properties.Resources.O)
+            {
+                Winner = "O";
+            }
+            else
+            {
+                Winner = " ";
+            }
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -87,7 +145,15 @@ namespace TicTacToe
                 }
             }
 
-
+            CheckWin();
+            if (Winner == "X")
+            {
+                MessageBox.Show("X Wins");
+            }
+            else if (Winner == "O")
+            {
+                MessageBox.Show("O Wins");
+            }
         }
     }
 }
