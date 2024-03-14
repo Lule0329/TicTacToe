@@ -20,13 +20,14 @@ namespace TicTacToe
         string turn = "X";
         bool WinnerX = false;
         bool WinnerO = false;
-        int XWins;
-        int OWins;
+        int XWins = 0;
+        int OWins = 0;
 
-        Image[] images = new Image[] { Properties.Resources.X, Properties.Resources.O, Properties.Resources.bg };
+        Image[] images = new Image[] { Properties.Resources.X, Properties.Resources.O, Properties.Resources.bg, Properties.Resources.Xwin, Properties.Resources.Owin };
 
         private void Restart()
         {
+            // sätter alla pictureboxes till samma färg
             pictureBox1.Image = images[2];
             pictureBox2.Image = images[2];
             pictureBox3.Image = images[2];
@@ -37,6 +38,7 @@ namespace TicTacToe
             pictureBox8.Image = images[2];
             pictureBox9.Image = images[2];
 
+            // Enablar alla pictureboxes
             pictureBox1.Enabled = true;
             pictureBox2.Enabled = true;
             pictureBox3.Enabled = true;
@@ -47,12 +49,14 @@ namespace TicTacToe
             pictureBox8.Enabled = true;
             pictureBox9.Enabled = true;
 
+            // återställer variabler och booleans
             turn = "X";
             WinnerX = false;
             WinnerO = false;
 
-            Xvinster.Text = "X vinster: " + XWins;
-            Ovinster.Text = "O vinster: " + OWins;
+            // Lägger till ett poäng till den som vinner
+            label1.Text = $"X vinster: " + XWins;
+            label2.Text = "O vinster: " + OWins;
         }
         
         private void CheckWin()
@@ -104,6 +108,129 @@ namespace TicTacToe
             }
         }
 
+        private void setGreen()
+        {
+            // Kollar vilka rutor ska bli gröna första raden
+            if (pictureBox1.Image == images[0] && pictureBox2.Image == images[0] && pictureBox3.Image == images[0])
+            {
+                pictureBox1.Image = images[3];
+                pictureBox2.Image = images[3];
+                pictureBox3.Image = images[3];
+            }
+
+            if (pictureBox1.Image == images[1] && pictureBox2.Image == images[1] && pictureBox3.Image == images[1])
+            {
+                pictureBox1.Image = images[4];
+                pictureBox2.Image = images[4];
+                pictureBox3.Image = images[4];
+            }
+
+            // Kollar andra raden
+            if (pictureBox4.Image == images[0] && pictureBox5.Image == images[0] && pictureBox6.Image == images[0])
+            {
+                pictureBox4.Image = images[3];
+                pictureBox5.Image = images[3];
+                pictureBox6.Image = images[3];
+            }
+
+            if (pictureBox4.Image == images[1] && pictureBox5.Image == images[1] && pictureBox6.Image == images[1])
+            {
+                pictureBox4.Image = images[4];
+                pictureBox5.Image = images[4];
+                pictureBox6.Image = images[4];
+            }
+
+            // Kollar tredje raden
+            if (pictureBox7.Image == images[0] && pictureBox8.Image == images[0] && pictureBox9.Image == images[0])
+            {
+                pictureBox7.Image = images[3];
+                pictureBox8.Image = images[3];
+                pictureBox9.Image = images[3];
+            }
+
+            if (pictureBox7.Image == images[1] && pictureBox8.Image == images[1] && pictureBox9.Image == images[1])
+            {
+                pictureBox7.Image = images[4];
+                pictureBox8.Image = images[4];
+                pictureBox9.Image = images[4];
+            }
+
+            // Kollar första raden vertikalt
+            if (pictureBox1.Image == images[0] && pictureBox4.Image == images[0] && pictureBox7.Image == images[0])
+            {
+                pictureBox1.Image = images[3];
+                pictureBox4.Image = images[3];
+                pictureBox7.Image = images[3];
+            }
+
+            if (pictureBox1.Image == images[1] && pictureBox4.Image == images[1] && pictureBox7.Image == images[1])
+            {
+                pictureBox1.Image = images[4];
+                pictureBox4.Image = images[4];
+                pictureBox7.Image = images[4];
+            }
+
+            // Kollar andra raden vertikalt
+            if (pictureBox2.Image == images[0] && pictureBox5.Image == images[0] && pictureBox8.Image == images[0])
+            {
+                pictureBox2.Image = images[3];
+                pictureBox5.Image = images[3];
+                pictureBox8.Image = images[3];
+            }
+
+            if (pictureBox2.Image == images[1] && pictureBox5.Image == images[1] && pictureBox8.Image == images[1])
+            {
+                pictureBox2.Image = images[4];
+                pictureBox5.Image = images[4];
+                pictureBox8.Image = images[4];
+            }
+
+            // Kollar tredje raden vertikalt
+            if (pictureBox3.Image == images[0] && pictureBox6.Image == images[0] && pictureBox9.Image == images[0])
+            {
+                pictureBox3.Image = images[3];
+                pictureBox6.Image = images[3];
+                pictureBox9.Image = images[3];
+            }
+
+            if (pictureBox3.Image == images[1] && pictureBox6.Image == images[1] && pictureBox9.Image == images[1])
+            {
+                pictureBox3.Image = images[4];
+                pictureBox6.Image = images[4];
+                pictureBox9.Image = images[4];
+            }
+
+            // Kollar diagonalt
+            if (pictureBox1.Image == images[0] && pictureBox5.Image == images[0] && pictureBox9.Image == images[0])
+            {
+                pictureBox1.Image = images[3];
+                pictureBox5.Image = images[3];
+                pictureBox9.Image = images[3];
+            }
+
+            if (pictureBox1.Image == images[1] && pictureBox5.Image == images[1] && pictureBox9.Image == images[1])
+            {
+                pictureBox1.Image = images[4];
+                pictureBox5.Image = images[4];
+                pictureBox9.Image = images[4];
+            }
+
+            // Kollar andra diagonalen
+            if (pictureBox3.Image == images[0] && pictureBox5.Image == images[0] && pictureBox7.Image == images[0])
+            {
+                pictureBox3.Image = images[3];
+                pictureBox5.Image = images[3];
+                pictureBox7.Image = images[3];
+            }
+
+            if (pictureBox3.Image == images[1] && pictureBox5.Image == images[1] && pictureBox7.Image == images[1])
+            {
+                pictureBox3.Image = images[4];
+                pictureBox5.Image = images[4];
+                pictureBox7.Image = images[4];
+            }
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             // Kollar vilken picturebox som man trycker på
@@ -126,15 +253,17 @@ namespace TicTacToe
                 }
             }
 
-            CheckWin();
-            if (WinnerX == true)
+            CheckWin(); // kollar om nån vinner
+            if (WinnerX == true) // om X vinner så gör den det här \/
             {
+                setGreen();
                 MessageBox.Show("X Wins");
                 XWins += 1;
                 Restart();
             }
-            else if (WinnerO == true)
+            else if (WinnerO == true) // om O vinner gör den det här \/
             {
+                setGreen();
                 MessageBox.Show("O Wins");
                 OWins += 1;
                 Restart();
