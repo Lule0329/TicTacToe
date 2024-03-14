@@ -23,7 +23,7 @@ namespace TicTacToe
         int XWins = 0;
         int OWins = 0;
 
-        Image[] images = new Image[] { Properties.Resources.X, Properties.Resources.O, Properties.Resources.bg, Properties.Resources.Xwin, Properties.Resources.Owin };
+        Image[] images = new Image[] { Properties.Resources.X, Properties.Resources.O, Properties.Resources.bg, Properties.Resources.Xwin, Properties.Resources.Owin, Properties.Resources.Xpreview, Properties.Resources.Opreview };
 
         private void Restart()
         {
@@ -267,6 +267,44 @@ namespace TicTacToe
                 MessageBox.Show("O Wins");
                 OWins += 1;
                 Restart();
+            }
+            else if (pictureBox1.Image != images[2] && pictureBox2.Image != images[2] && pictureBox3.Image != images[2] && pictureBox4.Image != images[2]
+                && pictureBox5.Image != images[2] && pictureBox6.Image != images[2] && pictureBox7.Image != images[2] && pictureBox8.Image != images[2]
+                && pictureBox9.Image != images[2] && WinnerO == false && WinnerX == false)
+            {
+                MessageBox.Show("Draw!");
+                Restart();
+            }
+        }
+
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            // Gör en preview om hur spelplanen kommer se ut om man hoverar över en ruta.
+            PictureBox pictureBox = sender as PictureBox;
+            
+            // Kollar om rutan är tom
+            if (pictureBox.Image == images[2]) 
+            {
+                // preview-ar kryss eller cirkel beroende på vems tur det är
+                if (turn == "X")
+                {
+                    pictureBox.Image = images[5];
+                }
+                else if (turn == "O")
+                {
+                    pictureBox.Image = images[6];
+                }
+            }
+        }
+
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            PictureBox pictureBox = sender as PictureBox;
+            
+            // Ser till så att den inte byter redan kryssade rutor till bakgrund
+            if (pictureBox.Enabled == true)
+            {
+                pictureBox.Image = images[2];
             }
         }
     }
